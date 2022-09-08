@@ -36,6 +36,12 @@
         (str "")
         string))
 
+(defn text-or-caption 
+    [{text :text :as message}]
+    (or text
+        (last (find message :caption))
+        ))
+
 (defn map-message 
     ([name username message]
        {:name (null->'' name)
@@ -47,12 +53,6 @@
                         (null->'' last-name))
         :username username
         :text (text-or-caption message)}))
-
-(defn text-or-caption 
-    [{text :text :as message}]
-    (or text
-        (last (find message :caption))
-        ))
 
 (defn if-channel 
     [{{ title :title 
@@ -78,7 +78,7 @@
 
 (defn if-closed-dm 
     [{  name :forward_sender_name  
-        :as bmessage}] 
+        :as message}] 
     (if (some? name)
             (map-message
                 name
@@ -109,7 +109,15 @@
             (:username a) 
             (:text a)))
 
-(compile-theme (test-message "dm-open"))
+(defn test-all [] 
+    (map compile-theme 
+        (map test-message 
+            '(  "dm-open" 
+                "dm-close" 
+                "channel-anon" 
+                "channel-signed" 
+                "straight"))))
+
 
 (defn send-message [message] (postal/send-message yandex-mailbox
                                                   {:from my-email

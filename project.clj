@@ -1,6 +1,6 @@
-(defproject mail-to-self-clj "0.1.0"
-  :description "FIXME: write description"
-  :url "http://example.com/FIXME"
+(defproject mail-to-self-clj "1.0.0"
+  :description "Mail to self Telegram bot"
+  :url "https://t.me/fwd_to_email_bot"
 
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}

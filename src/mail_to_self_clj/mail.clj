@@ -56,8 +56,8 @@
 
 (defn if-straight [message]
 	{	:name (format 	"%s %s"
-								(:first_name (:forward_from message))
-								(:last_name (:forward_from message)))
+						(:first_name (:from message))
+						(:last_name (:from message)))
 		:username (:username (:from message))
 		:text (text-or-caption message)})
 

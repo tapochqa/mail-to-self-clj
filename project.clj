@@ -1,4 +1,4 @@
-(defproject mail-to-self-clj "0.1.0-SNAPSHOT"
+(defproject mail-to-self-clj "0.1.0"
   :description "FIXME: write description"
   :url "http://example.com/FIXME"
 

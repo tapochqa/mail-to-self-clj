@@ -13,7 +13,6 @@
                      :tls true})
 
 ; didn't use begin
-
 (defn subst [msg len] (subs msg 0 (- len 3)))
 (defn apply-dots [msg len] (apply str (subst msg len) "..."))
 
@@ -21,48 +20,87 @@
     (if (>= (count msg) len) 
             (apply-dots msg len)
             msg))
-
 ; didn't use end
 
+(defn test-message 
+    [-type] 
+    (first (map :content 
+                (filter 
+                    (fn [a] 
+                        (= (:type a) 
+                            -type)) 
+                    m/test-messages))))
 
-(def needed-message (first (map :content (filter (fn [a] (= (:type a) "channel-signed") ) m/test-messages))))
+(defn null->'' [string] 
+    (if (= nil string)
+        (str "")
+        string))
 
-(defn text-or-caption [message]
-    (or (:text message)
-        (last (find message :caption))))
-
-(defn if-channel [message]
-    (if (:forward_from_chat message) 
-            {:name (:title (:forward_from_chat message))
-             :username (:username (:forward_from_chat message))
-             :text (text-or-caption message)}))
-
-(defn if-open-dm [message]
-    (if (:forward_from message) 
-           {:name (format   "%s %s"
-                            (:first_name (:forward_from message))
-                            (:last_name (:forward_from message)))
-            :username (:username (:forward_from message))
-            :text (text-or-caption message)}))
-
-(defn if-closed-dm [message] 
-    (if (:forward_sender_name message)
-           {:name (:forward_sender_name message)
-            :text (text-or-caption message)}))
-
-(defn if-straight [message]
-       {:name (format   "%s %s"
-                        (:first_name (:from message))
-                        (:last_name (:from message)))
-        :username (:username (:from message))
+(defn map-message 
+    ([name username message]
+       {:name (null->'' name)
+        :username (null->'' username)
         :text (text-or-caption message)})
+    ([first-name last-name username message]
+       {:name (format   "%s %s" 
+                        (null->'' first-name) 
+                        (null->'' last-name))
+        :username username
+        :text (text-or-caption message)}))
+
+(defn text-or-caption 
+    [{text :text :as message}]
+    (or text
+        (last (find message :caption))
+        ))
+
+(defn if-channel 
+    [{{ title :title 
+        username :username 
+        :as forward} :forward_from_chat :as message}]
+    (if (some? forward)
+        (map-message 
+            title
+            username
+            message)))
+
+(defn if-open-dm 
+    [{{ first-name :first_name 
+        last-name :last_name 
+        username :username 
+        :as forward} :forward_from :as message}]
+    (if (some? forward) 
+           (map-message
+                first-name
+                last-name
+                username
+                message)))
+
+(defn if-closed-dm 
+    [{  name :forward_sender_name  
+        :as bmessage}] 
+    (if (some? name)
+            (map-message
+                name
+                (str "")
+                message)))
+
+(defn if-straight 
+    [{{ first-name :first_name
+        last-name :last_name
+        username :username 
+        :as from} :from :as message}]
+    (map-message
+        first-name
+        last-name
+        username
+        message))
 
 (defn seek [message] 
     (or (if-channel message)
         (if-open-dm message)
         (if-closed-dm message)
         (if-straight message)))
-
 
 (defn compile-theme [message]
     (def a (seek message))
@@ -71,7 +109,7 @@
             (:username a) 
             (:text a)))
 
-(compile-theme needed-message)
+(compile-theme (test-message "dm-open"))
 
 (defn send-message [message] (postal/send-message yandex-mailbox
                                                   {:from my-email

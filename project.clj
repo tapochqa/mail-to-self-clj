@@ -7,7 +7,8 @@
 
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [environ             "1.1.0"]
-                 [morse               "0.4.3"]]
+                 [morse               "0.4.3"]
+                 [com.draines/postal  "2.0.5"]]
 
   :plugins [[lein-environ "1.1.0"]]
 

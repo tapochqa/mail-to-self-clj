@@ -4,14 +4,13 @@
 
 (def my-email "tapochqa@yandex.ru")
 
-(def yandex-mailbox {   :host "smtp.yandex.ru"
-                        :port 587
-                        :user my-email
-                        :pass (slurp "resources/mail-password.txt")
-                        :auth "plain"
-                        :domain "limonadny.ru"
-                        :tls true
-                        })
+(def yandex-mailbox {:host "smtp.yandex.ru"
+                     :port 587
+                     :user my-email
+                     :pass (slurp "resources/mail-password.txt")
+                     :auth "plain"
+                     :domain "limonadny.ru"
+                     :tls true})
 
 ; didn't use begin
 
@@ -32,40 +31,37 @@
     (or (:text message)
         (last (find message :caption))))
 
-(defn if-channel [message else-fn]
+(defn if-channel [message]
     (if (:forward_from_chat message) 
             {:name (:title (:forward_from_chat message))
              :username (:username (:forward_from_chat message))
-             :text (text-or-caption message)}
-        else-fn))
+             :text (text-or-caption message)}))
 
-(defn if-open-dm [message else-fn]
-    (if     (:forward_from message) 
-            {   :name (format   "%s %s"
-                                (:first_name (:forward_from message))
-                                (:last_name (:forward_from message)))
-                :username (:username (:forward_from message))
-                :text (text-or-caption message)}
-            else-fn))
+(defn if-open-dm [message]
+    (if (:forward_from message) 
+           {:name (format   "%s %s"
+                            (:first_name (:forward_from message))
+                            (:last_name (:forward_from message)))
+            :username (:username (:forward_from message))
+            :text (text-or-caption message)}))
 
-(defn if-closed-dm [message else-fn] 
+(defn if-closed-dm [message] 
     (if (:forward_sender_name message)
-        {   :name (:forward_sender_name message)
-            :text (text-or-caption message)}
-        else-fn))
+           {:name (:forward_sender_name message)
+            :text (text-or-caption message)}))
 
 (defn if-straight [message]
-    {   :name (format   "%s %s"
+       {:name (format   "%s %s"
                         (:first_name (:from message))
                         (:last_name (:from message)))
         :username (:username (:from message))
         :text (text-or-caption message)})
 
 (defn seek [message] 
-    (or (if-channel message nil)
-        (if-open-dm message nil)
-        (if-closed-dm message nil)
-        (if-straight message))) 
+    (or (if-channel message)
+        (if-open-dm message)
+        (if-closed-dm message)
+        (if-straight message)))
 
 
 (defn compile-theme [message]
@@ -78,7 +74,7 @@
 (compile-theme needed-message)
 
 (defn send-message [message] (postal/send-message yandex-mailbox
-                                                        {:from my-email
-                                                         :to "max@limonadny.ru"
-                                                         :subject (compile-theme message)
-                                                         :body (text-or-caption message)}))
+                                                  {:from my-email
+                                                   :to "max@limonadny.ru"
+                                                   :subject (compile-theme message)
+                                                   :body (text-or-caption message)}))

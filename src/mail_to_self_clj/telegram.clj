@@ -20,6 +20,6 @@
     (fn [{{id :id} :chat :as message}]
       (println "Intercepted message: " (clojure.pprint/pprint message))
       (mail/send-message message)
-      (t/send-text token id "✉️👌🏻"))))
+      (t/send-text token id "ок"))))
 
 (defn start [] (<!! (p/start token handler)))

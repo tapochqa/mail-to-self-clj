@@ -13,4 +13,5 @@
     (println "Please provde token in TELEGRAM_TOKEN environment variable!")
     (System/exit 1))
     (println "Starting the mail-to-self-clj")
-    (telegram/start))
+    (telegram/start)
+    )

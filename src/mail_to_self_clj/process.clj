@@ -137,8 +137,8 @@
 
 (defn media->link [token message coll]
     (if (= (type coll) java.lang.String)
-        {   :type "text/plain; charset=utf-8"
-            :content coll}
+        [{   :type "text/plain; charset=utf-8"
+            :content coll}]
         (tg-link token message coll)))
 
 (defn process-body [message token]

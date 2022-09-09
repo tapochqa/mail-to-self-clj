@@ -5,4 +5,5 @@
     (load "process")
     (load "messages"))
 
-(telegram/start)
+(comment
+	(telegram/start))

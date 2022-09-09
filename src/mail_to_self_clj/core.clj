@@ -2,8 +2,6 @@
   (:require [clojure.string :as str]
             [environ.core :refer [env]]
             [mail-to-self-clj.telegram :as telegram])
-    (load "telegram")
-    (load "mail")
     (:gen-class))
 
 

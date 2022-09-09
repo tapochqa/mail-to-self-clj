@@ -4,7 +4,8 @@
                       :content {:message_id 5
                                 :from { :id 163440129 
                                         :is_bot false
-                                        :first_name "макс" 
+                                        :first_name "максим" 
+                                        :last_name "сакович" 
                                         :username "briskovic" 
                                         :language_code "en" 
                                         :is_premium true} 
@@ -75,6 +76,7 @@
                                   :forward_sender_name "Qq"
                                   :forward_date 1662571512
                                   :text "Привет, подскажите пожалуйста, книгу по clojure. Я знаю груви и java. Интересно потыкать кложуру"}}
+
                     { :type "channel-signed"
                       :content {  :video { :thumb {:file_id "AAMCAgADGQEAA3FjGVsSeftzFaPY4H74Tmcom9zJOgAC-hQAAtCpgUkhkVe4aZo7pgEAB20AAykE"
                                                    :file_unique_id "AQAD-hQAAtCpgUly"
@@ -87,7 +89,7 @@
                                             :duration 127
                                             :file_size 257429577
                                             :file_unique_id "AgAD-hQAAtCpgUk"
-                                            :file_id "BAACAgIAAxkBAANxYxlbEnn7cxWj2OB--E5nKJvcyToAAvoUAALQqYFJIZFXuGmaO6YpBA"
+                                            :file_id "BAACAgIAAxkBAAPOYxqvwb5JbmFS8sy6ndbYPG9dDj4AAvoUAALQqYFJIZFXuGmaO6YpBA"
                                             :height 1920}
                                     :caption "Новую версию на русском записывали еще в 2020м. Спешка, срочно, надо было запилить трек для танца. Спасибо Сергею Довгий за помощь и запись в тот сложный момент. На онлайн концерте пел ее, но думаю все же надо выпустить ее в нормальном варианте, сейчас она очень актуальна для меня. Трек на английском называется - I'll Stay, а на Русском будет - Ты сможешь."
                                     :date 1662606098
@@ -108,4 +110,55 @@
                                           :is_premium true}
                                    :forward_signature "MolotFX"
                                    :forward_from_message_id 12
-                                   :forward_date 1647329447}}])
+                                   :forward_date 1647329447}}
+
+                      { :type "photo"
+                        :content { :date 1662679236,
+                                   :forward_from_chat
+                                   {:id -1001758883409,
+                                    :title "girls cum first",
+                                    :username "girlscumfirsst",
+                                    :type "channel"},
+                                   :chat
+                                   {:id 163440129,
+                                    :first_name "макс",
+                                    :username "briskovic",
+                                    :type "private"},
+                                   :message_id 154,
+                                   :photo
+                                   [{:file_id
+                                     "AgACAgIAAxkBAAOaYxp4xK7AgYgUvmeW1ScH1sgqxGoAAgy9MRsomslIje1Yxj5SAYgBAAMCAANzAAMpBA",
+                                     :file_unique_id "AQADDL0xGyiayUh4",
+                                     :file_size 1410,
+                                     :width 51,
+                                     :height 90}
+                                    {:file_id
+                                     "AgACAgIAAxkBAAOaYxp4xK7AgYgUvmeW1ScH1sgqxGoAAgy9MRsomslIje1Yxj5SAYgBAAMCAANtAAMpBA",
+                                     :file_unique_id "AQADDL0xGyiayUhy",
+                                     :file_size 16665,
+                                     :width 180,
+                                     :height 320}
+                                    {:file_id
+                                     "AgACAgIAAxkBAAOaYxp4xK7AgYgUvmeW1ScH1sgqxGoAAgy9MRsomslIje1Yxj5SAYgBAAMCAAN4AAMpBA",
+                                     :file_unique_id "AQADDL0xGyiayUh9",
+                                     :file_size 69500,
+                                     :width 450,
+                                     :height 800}
+                                    {:file_id
+                                     "AgACAgIAAxkBAAOaYxp4xK7AgYgUvmeW1ScH1sgqxGoAAgy9MRsomslIje1Yxj5SAYgBAAMCAAN5AAMpBA",
+                                     :file_unique_id "AQADDL0xGyiayUh-",
+                                     :file_size 95721,
+                                     :width 720,
+                                     :height 1280}],
+                                   :from
+                                   {:id 163440129,
+                                    :is_bot false,
+                                    :first_name "макс",
+                                    :username "briskovic",
+                                    :language_code "en",
+                                    :is_premium true},
+                                   :media_group_id "13301433893742442",
+                                   :forward_from_message_id 3756,
+                                   :forward_date 1662553116}}])
+
+

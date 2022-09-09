@@ -1,4 +1,4 @@
-(defproject mail-to-self-clj "1.0.0"
+(defproject mail-to-self-clj "2.0.0"
   :description "Mail to self Telegram bot"
   :url "https://t.me/fwd_to_email_bot"
 

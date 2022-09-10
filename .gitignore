@@ -11,3 +11,4 @@ pom.xml.asc
 .hg/
 resources/token.txt
 resources/mail-password.txt
+resources/credentials.yml

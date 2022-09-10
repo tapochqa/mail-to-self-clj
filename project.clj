@@ -1,4 +1,4 @@
-(defproject mail-to-self-clj "2.0.0"
+(defproject mail-to-self-clj "2.1.0"
   :description "Mail to self Telegram bot"
   :url "https://t.me/fwd_to_email_bot"
 
@@ -19,7 +19,7 @@
   :resource {
 
     :resource-paths [ ["resources" 
-                     {:target-path "target" ;; directory to store files          
+                     {:target-path "target/resources" ;; directory to store files          
                      }]]
     :update   false      ;; if true only process files with src newer than dest
     :includes [ #".*" ]  ;; optional - this is the default

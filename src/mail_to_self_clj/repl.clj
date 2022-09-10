@@ -3,7 +3,8 @@
     (load "telegram")
     (load "mail")
     (load "process")
-    (load "messages"))
+    (load "messages")
+    (load "credentials"))
 
 (comment
 	(telegram/start))

@@ -9,6 +9,3 @@ pom.xml.asc
 /.nrepl-port
 .hgignore
 .hg/
-resources/token.txt
-resources/mail-password.txt
-resources/credentials.yml

@@ -2,7 +2,8 @@
     (:require   [mail-to-self-clj.messages :as m]
                 [morse.api :as t-api]
                 [clojure.java.io :as io]
-                [clj-http.client :as client]))
+                [clj-http.client :as client]
+                [mail-to-self-clj.credentials :as credentials]))
 
 ; didn't use begin
 (defn subst [msg len] (subs msg 0 (- len 3)))
@@ -14,7 +15,7 @@
             msg))
 ; didn't use end
 
-(def token (slurp "resources/token.txt"))
+
 
 (defn test-message 
     [-type] 
@@ -155,9 +156,9 @@
     (media-type (test-message "photo"))
     (seek (test-message "photo"))
     (media-type (test-message "dm-close"))
-    (first (process-body (test-message "photo") token))
-    (process-body (test-message "straight") token)
-    (process-body (test-message "channel-signed") token)
+    (first (process-body (test-message "photo") credentials/token))
+    (process-body (test-message "straight") credentials/token)
+    (process-body (test-message "channel-signed") credentials/token)
     (text-or-caption (test-message "photo"))
     (map compile-theme 
         (map test-message 

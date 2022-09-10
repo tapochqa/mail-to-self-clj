@@ -1,6 +1,7 @@
 (ns mail-to-self-clj.mail
     (:require   [postal.core :as postal]
-                [mail-to-self-clj.process :as process]))
+                [mail-to-self-clj.process :as process]
+                [yaml.core :as yaml]))
 
 (def my-email "tapochqa@yandex.ru")
 
@@ -21,3 +22,6 @@
 
 
 (clojure.java.io/file "resources/token.txt")
+
+
+(yaml/from-file "credentials.yml")
